@@ -30,3 +30,20 @@ function isLose() {
   const rect = ball.rect();
   return rect.right >= window.innerWidth || rect.left <= 0;
 }
+
+function handleLose() {
+  const rect = ball.rect();
+  if (rect.right >= window.innerWidth) {
+    playerScoreElem.textContent = parseInt(playerScoreElem.textContent) + 1;
+  } else {
+    computerScoreElem.textContent = parseInt(computerScoreElem.textContent) + 1;
+  }
+  ball.reset();
+  computerPaddle.reset();
+}
+
+document.addEventListener('mousemove', (e) => {
+  playerPaddle.position = (e.y / window.innerHeight) * 100;
+});
+
+window.requestAnimationFrame(update);
